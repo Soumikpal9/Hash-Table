@@ -11,8 +11,13 @@ public class Executor {
 			else 	value++;
 			linkedHashMap.add(word, value);
 		}
-		Integer frequency = linkedHashMap.get("paranoid");
-		System.out.println(frequency);
+		MapNode<String, Integer> myNode = (MapNode<String, Integer>)linkedHashMap.remove("avoidable");
 		System.out.println(linkedHashMap);
+		if(myNode.getNext().getKey() == null) {
+			System.out.println("Assertion True");
+		}
+		else {
+			System.out.println("Assertion False");
+		}
 	}
-}
+} 

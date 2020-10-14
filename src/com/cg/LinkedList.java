@@ -3,6 +3,7 @@ package com.cg;
 public class LinkedList<K> {
 	public INode<K> head;
 	public INode<K> tail;
+	public int size;
 	
 	public LinkedList() {
 		this.head = null;
@@ -80,16 +81,20 @@ public class LinkedList<K> {
 		}
 	}
 	
-	//public void popValue(K key) {
-		//INode<K> index = searchValue(key);
-		//int count = 0;
-		//INode current = head;
-		//while(count < index - 1) {
-			//current = current.getNext();
-			//count++;
-		//}
-		//current.setNext(current.getNext().getNext());
-	//}
+	public INode<K> popValue(K key) {
+		INode<K> temp = head;
+		while(temp != null && temp.getNext() != null) {
+			if(temp.getNext().getKey().equals(key)) {
+				break;
+			}
+			else{
+				temp = temp.getNext();
+			}
+		}
+		temp.setNext(temp.getNext().getNext());
+		size--;
+		return temp;
+	}
 	
 	public INode<K> searchValue(K key) {
 		INode<K> tempNode = head;
@@ -105,11 +110,15 @@ public class LinkedList<K> {
 	
 	public int sizeOfLinkedList() {
 		INode<K> tempNode = head;
-		int size = 0;
+		size = 0;
 		while(tempNode != null) {
 			size++;
 			tempNode = tempNode.getNext();
 		}
+		return size;
+	}
+	
+	public int resize() {
 		return size;
 	}
 	

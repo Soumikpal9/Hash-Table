@@ -46,4 +46,11 @@ public class LinkedHashMap<K, V> {
 		}
 	}
 	
+	public MapNode<K, V> remove(K key){
+		int index = this.getBucketIndex(key);
+		LinkedList<K> myList = this.bucketArray.get(index);
+		MapNode<K, V> mapNode = (MapNode<K, V>)myList.popValue(key);
+		return (mapNode == null) ? null : mapNode;	
+	}
+	
 }
